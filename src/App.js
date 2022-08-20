@@ -1,10 +1,11 @@
 import './App.css';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Title from './components/title';
 import Modal from './components/Modal';
+import EventList from './components/EventList';
 function App() {
 
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true)
   const [events, setEvents] = useState([
     { title: "ashu is a good boy", id: 1 },
@@ -40,21 +41,15 @@ function App() {
         (<div>
           <button onClick={() => setShowEvents(true)}>Show events</button>
         </div>)}
-      {showEvents && events.map((event, index) => (
-        <React.Fragment key={event.id}>
-          <h2>{index + 1} - {event.title}</h2>
-          <button onClick={() => handleClick(event.id)}>delete event</button>
-        </React.Fragment>
-      ))}
-      {/* <Modal>
-        <h2>10% off coupon code!!</h2>
-        <p>Use the code ASHU10 at the checkout.</p>
-      </Modal> */}
+      {showEvents && <EventList events ={events} handleClick={handleClick}/>}
       {showModal && <Modal handleClose={handleClose}>
         <h2>Terms and conditions</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error culpa consequuntur corporis, maxime expedita possimus accusantium eum veritatis ipsum? Nihil ut culpa nostrum vitae eos doloribus laborum laudantium quod autem?</p>
         <a href="#">Find out more...</a>
       </Modal>}
+      <div>
+        <button onClick={() => setShowModal(true)}>T&C</button>
+      </div>
     </div>
   );
 }
