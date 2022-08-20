@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react'
-import Title from './components/title';
+import Title from './components/Title';
 import Modal from './components/Modal';
 import EventList from './components/EventList';
 function App() {
@@ -42,7 +42,7 @@ function App() {
           <button onClick={() => setShowEvents(true)}>Show events</button>
         </div>)}
       {showEvents && <EventList events ={events} handleClick={handleClick}/>}
-      {showModal && <Modal handleClose={handleClose}>
+      {showModal && <Modal handleClose={handleClose} isSalesModal={true}>
         <h2>Terms and conditions</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error culpa consequuntur corporis, maxime expedita possimus accusantium eum veritatis ipsum? Nihil ut culpa nostrum vitae eos doloribus laborum laudantium quod autem?</p>
         <a href="#">Find out more...</a>
