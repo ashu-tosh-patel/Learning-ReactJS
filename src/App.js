@@ -8,13 +8,14 @@ function App() {
 
   const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true)
-  const [events, setEvents] = useState([
-    { title: "ashu is a good boy", id: 1 },
-    { title: "harsh is a good boy", id: 2 },
-    { title: "shubh is a good boy", id: 3 },
-  ])
+  const [events, setEvents] = useState([])
 
-  console.log(showModal)
+  const addEvent = (event) => {
+    setEvents((prevEvents) => {
+      return [...prevEvents, event]
+    })
+    setShowModal(false)
+  }
 
   const handleClick = (id) => {
     setEvents((prevEvents) => {
@@ -24,11 +25,6 @@ function App() {
     })
     console.log(id);
   }
-
-  const handleClose = () => {
-    setShowModal(false)
-  }
-
   const subtitle = "this sub is passed form parent"
 
   return (
@@ -42,9 +38,9 @@ function App() {
         (<div>
           <button onClick={() => setShowEvents(true)}>Show events</button>
         </div>)}
-      {showEvents && <EventList events ={events} handleClick={handleClick}/>}
-      {showModal && <Modal handleClose={handleClose} isSalesModal={true}>
-        <NewEventForm/>
+      {showEvents && <EventList events={events} handleClick={handleClick} />}
+      {showModal && <Modal isSalesModal={true}>
+        <NewEventForm addEvent={addEvent} />
       </Modal>}
       <div>
         <button onClick={() => setShowModal(true)}>Add New Event</button>
